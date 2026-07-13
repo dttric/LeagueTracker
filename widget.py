@@ -2,71 +2,73 @@ import json
 import os
 import requests
 import api
+from api import searchforchampion, getmastery
 from config import config
 if os.path.exists(".env"):
     import dotenv
     dotenv.load_dotenv(".env")
 
 discord = {
-    "token": os.getenv("DISCORD_TOKEN"),
+    "token": str(os.getenv("DISCORD_TOKEN")),
     "appid": int(os.getenv("DISCORD_APP_ID")),
     "uid": int(os.getenv("DISCORD_USER_ID")),
 }
 
 data = json.dumps({
+  "username": config["discord_user"],
   "data": {
     "dynamic": [
       {
         "type": 1,
         "name": "rank",
-        "value": ""
+        "value": f"{api.getplayerrank()["rank"]}"
       },
       {
         "type": 1,
         "name": "masterypoints",
-        "value": ""
+        "value": f"{api.getmastery()["totalpoints"]}"
       },
       {
         "type": 3,
         "name": "champimage",
         "value": {
-          "url": "<URL to champimage.png>"
+          "url": f"{api.searchforchampion(api.gettop1())["image"]}"
         }
       },
       {
         "type": 1,
         "name": "playername",
-        "value": ""
+        "value": f"{config["riotid"]}"
       },
       {
         "type": 1,
         "name": "playerlvl",
-        "value": ""
+        "value": f""
       },
       {
         "type": 1,
         "name": "favchampion",
-        "value": ""
+        "value": f"{api.searchforchampion(api.gettop1())['champion']}"
       },
       {
         "type": 1,
         "name": "region",
-        "value": ""
+        "value": f""
       },
       {
         "type": 1,
         "name": "masterylvl",
-        "value": ""
+        "value": f"{api.getmastery()["masterylvl"]}"
       },
       {
         "type": 1,
-        "name": "winrate",
-        "value": ""
+        "name": "lp",
+        "value": f"{api.getplayerrank()["lp"]}"
       },
       {
         "type": 1,
         "name": "mainmastery",
-        "value": ""
+        "value": f"{api.gettop1()["championPoints"]}"
       }
     ]
   }

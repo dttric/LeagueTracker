@@ -28,6 +28,6 @@ jobs:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           DISCORD_APP_ID: ${{ secrets.DISCORD_APP_ID }}
           DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
-          # STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
 
         run: python widget.py
