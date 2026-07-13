@@ -2,9 +2,9 @@ name: Updater
 
 on:
  workflow_dispatch:
- # schedule:
- #   - cron: "0/30 * * * *"
- #     timezone: "Asia/Novosibirsk"
+ schedule:
+    - cron: "0/30 * * * *"
+      timezone: "Asia/Novosibirsk"
 
 jobs:
   update_widget:
