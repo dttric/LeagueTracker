@@ -1,6 +1,5 @@
 import requests
 import json
-from icecream import ic
 
 from config import config as cfg
 import os
