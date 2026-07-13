@@ -1,5 +1,7 @@
 import requests
 import json
+from icecream import ic
+
 from config import config as cfg
 import os
 
@@ -79,11 +81,22 @@ def getplayerrank():
 
     return {
         "lp": request.json()[0]["leaguePoints"],
-        "rank": f"{tier} " + request.json()[0]["rank"]
+        "rank": f"{tier} " + request.json()[0]["rank"],
+        "image": f"https://raw.githubusercontent.com/dttric/LeagueTracker/refs/heads/main/rankedmedals/{str(request.json()[0]["tier"]).lower()}.png"
     }
+
+def getplayer():
+    url = f"https://ru.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{ridtopuuid(riotid)}?api_key={api_key}"
+    request = requests.get(url)
+    return {
+        "level": request.json()["summonerLevel"],
+        "icon": f"https://ddragon.leagueoflegends.com/cdn/16.13.1/img/profileicon/{request.json()["profileIconId"]}.png"
+    }
+
 
 if __name__ == "__main__":
     print(gettop1())
     print(searchforchampion(gettop1()))
     print(getmastery())
     print(getplayerrank())
+    print(getplayer())

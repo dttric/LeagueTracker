@@ -2,7 +2,6 @@ import json
 import os
 import requests
 import api
-from api import searchforchampion, getmastery
 from config import config
 if os.path.exists(".env"):
     import dotenv
@@ -26,13 +25,20 @@ data = json.dumps({
       {
         "type": 1,
         "name": "masterypoints",
-        "value": f"{api.getmastery()["totalpoints"]}"
+        "value": f"LVL {api.getmastery()["masterylvl"]} | {api.getmastery()["totalpoints"]} pts."
       },
       {
         "type": 3,
         "name": "champimage",
         "value": {
           "url": f"{api.searchforchampion(api.gettop1())["image"]}"
+        }
+      },
+      {
+        "type": 3,
+        "name": "rankimage",
+        "value": {
+          "url": f"{api.getplayerrank()["image"]}"
         }
       },
       {
@@ -43,17 +49,12 @@ data = json.dumps({
       {
         "type": 1,
         "name": "playerlvl",
-        "value": f""
+        "value": f"Level {api.getplayer()['level']}"
       },
       {
         "type": 1,
         "name": "favchampion",
         "value": f"{api.searchforchampion(api.gettop1())['champion']}"
-      },
-      {
-        "type": 1,
-        "name": "region",
-        "value": f""
       },
       {
         "type": 1,
@@ -63,13 +64,20 @@ data = json.dumps({
       {
         "type": 1,
         "name": "lp",
-        "value": f"{api.getplayerrank()["lp"]}"
+        "value": f"{api.getplayerrank()["lp"]} LP"
       },
       {
         "type": 1,
         "name": "mainmastery",
-        "value": f"{api.gettop1()["championPoints"]}"
-      }
+        "value": f"{api.gettop1()["championPoints"]} pts."
+      },
+      {
+        "type": 3,
+        "name": "profileimage",
+        "value": {
+          "url": f"{api.getplayer()["icon"]}"
+        }
+      },
     ]
   }
 })
