@@ -1,12 +1,11 @@
 import json
 import os
-
 import requests
-
-# import api
+import api
 from config import config
-
-# min, max = api.get_progress(config["sid"], config["gid"]).split(":")
+if os.path.exists(".env"):
+    import dotenv
+    dotenv.load_dotenv(".env")
 
 discord = {
     "token": os.getenv("DISCORD_TOKEN"),
@@ -14,7 +13,64 @@ discord = {
     "uid": int(os.getenv("DISCORD_USER_ID")),
 }
 
-data = json.dumps()
+data = json.dumps({
+  "data": {
+    "dynamic": [
+      {
+        "type": 1,
+        "name": "rank",
+        "value": ""
+      },
+      {
+        "type": 1,
+        "name": "masterypoints",
+        "value": ""
+      },
+      {
+        "type": 3,
+        "name": "champimage",
+        "value": {
+          "url": "<URL to champimage.png>"
+        }
+      },
+      {
+        "type": 1,
+        "name": "playername",
+        "value": ""
+      },
+      {
+        "type": 1,
+        "name": "playerlvl",
+        "value": ""
+      },
+      {
+        "type": 1,
+        "name": "favchampion",
+        "value": ""
+      },
+      {
+        "type": 1,
+        "name": "region",
+        "value": ""
+      },
+      {
+        "type": 1,
+        "name": "masterylvl",
+        "value": ""
+      },
+      {
+        "type": 1,
+        "name": "winrate",
+        "value": ""
+      },
+      {
+        "type": 1,
+        "name": "mainmastery",
+        "value": ""
+      }
+    ]
+  }
+})
 
 headers = {
     "Content-Type": "application/json",
