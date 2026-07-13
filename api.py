@@ -29,7 +29,7 @@ def find_parent_by_value(data, target):
                 return result
 
 def searchforchampion(champion):
-    url = "https://ddragon.leagueoflegends.com/cdn/16.13.1/data/en_US/champion.json"
+    url = "https://ddragon.leagueoflegends.com/cdn/16.13.1/data/ru_RU/champion.json"
     request = requests.get(url)
     champlist = request.json()["data"]
     json = find_parent_by_value(champlist, str(champion['championId']))
