@@ -67,16 +67,16 @@ def getplayerrank():
     url = f"https://ru.api.riotgames.com/lol/league/v4/entries/by-puuid/{ridtopuuid(riotid)}?api_key={api_key}"
     request = requests.get(url)
     match request.json()[0]["tier"]:
-        case "IRON": tier = "Железо"
-        case "BRONZE": tier = "Бронза"
-        case "SILVER": tier = "Серебро"
-        case "GOLD": tier = "Золото"
-        case "PLATINUM": tier = "Платина"
-        case "EMERALD": tier = "Изумруд"
-        case "DIAMOND": tier = "Алмаз"
-        case "MASTER": tier = "Мастер"
-        case "GRANDMASTER": tier = "Грандмастер"
-        case "CHALLENGER": tier = "Прентендент"
+        case "IRON": tier = "Iron"
+        case "BRONZE": tier = "Bronze"
+        case "SILVER": tier = "Silver"
+        case "GOLD": tier = "Gold"
+        case "PLATINUM": tier = "Platinum"
+        case "EMERALD": tier = "Emerald"
+        case "DIAMOND": tier = "Diamond"
+        case "MASTER": tier = "Master"
+        case "GRANDMASTER": tier = "Grandmaster"
+        case "CHALLENGER": tier = "Challenger"
 
     return {
         "lp": request.json()[0]["leaguePoints"],
